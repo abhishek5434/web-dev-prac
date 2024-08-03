@@ -223,3 +223,15 @@ Enhanced object literals make it easier to create objects by providing shorthand
 - **Prototype Definitions:** Easily set the prototype of an object with `__proto__`.
 
 Enhanced object literals are useful for creating objects more efficiently and making the code easier to read and maintain. They help to reduce boilerplate code and provide a modern syntax for object-oriented programming in JavaScript.
+
+# Default value in function
+```JS
+const printName = (name = "Abhishek") => `Hello ${name}`;
+console.log(printName("Rajesh"));
+
+function multiply(a, b = 1) {
+  return a * b;
+}
+
+console.log(multiply(5, 2));
+```
