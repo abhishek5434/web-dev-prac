@@ -132,3 +132,94 @@ const multiply = (a, b) => {
 - Ideal for use in callbacks and functional programming patterns.
 - Avoid using them as methods in classes or objects where a dynamic `this` is required.
 
+Enhanced object literals in JavaScript, introduced with ES6 (ECMAScript 2015), provide a more concise and readable syntax for defining object properties and methods. They include several features that streamline the process of working with objects. Here's a summary of the key features of enhanced object literals:
+
+# Enhanced Object Literals
+
+**Overview:**  
+Enhanced object literals make it easier to create objects by providing shorthand syntax for common patterns.
+
+### Key Features
+
+1. **Property Shorthand:**
+   - You can omit the colon and value if the property name matches the variable name.
+
+   ```javascript
+   const name = "Abhishek";
+   const age = 25;
+
+   const person = { name, age };
+
+   console.log(person); // { name: "Abhishek", age: 25 }
+   ```
+
+2. **Method Shorthand:**
+   - Define methods in objects without using the `function` keyword.
+
+   ```javascript
+   const person = {
+     name: "Abhishek",
+     greet() {
+       console.log(`Hello, my name is ${this.name}`);
+     }
+   };
+
+   person.greet(); // Hello, my name is Abhishek
+   ```
+
+3. **Computed Property Names:**
+   - Use expressions inside square brackets `[]` to define dynamic property names.
+
+   ```javascript
+   const propName = "dynamicProp";
+   const obj = {
+     [propName]: "value"
+   };
+
+   console.log(obj); // { dynamicProp: "value" }
+   ```
+
+4. **Concise Method Definitions:**
+   - Use concise syntax for defining methods within objects, which improves readability.
+
+   ```javascript
+   const mathOperations = {
+     add(a, b) {
+       return a + b;
+     },
+     subtract(a, b) {
+       return a - b;
+     }
+   };
+
+   console.log(mathOperations.add(5, 3)); // 8
+   ```
+
+5. **Prototype Definitions:**
+   - Objects can include a `__proto__` property to set the prototype directly.
+
+   ```javascript
+   const proto = {
+     greet() {
+       console.log("Hello from proto!");
+     }
+   };
+
+   const obj = {
+     __proto__: proto,
+     customMethod() {
+       console.log("This is a custom method.");
+     }
+   };
+
+   obj.greet(); // Hello from proto!
+   ```
+
+### Summary
+
+- **Property Shorthand:** Simplifies object creation by reducing redundancy.
+- **Method Shorthand:** Provides a cleaner syntax for defining object methods.
+- **Computed Property Names:** Allows dynamic property creation using expressions.
+- **Prototype Definitions:** Easily set the prototype of an object with `__proto__`.
+
+Enhanced object literals are useful for creating objects more efficiently and making the code easier to read and maintain. They help to reduce boilerplate code and provide a modern syntax for object-oriented programming in JavaScript.
