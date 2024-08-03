@@ -1276,3 +1276,33 @@ setTimeout(() => clearInterval(intervalId), 5000);
 - **`setTimeout`** is for running a function once after a delay.
 - **`setInterval`** is for running a function repeatedly at set intervals.
 - **`clearTimeout`** and **`clearInterval`** are used to cancel scheduled actions.
+
+Additional Examples:
+```JS
+setTimeout(() => {
+  console.log("Hello World! I am testing setTimeout function");
+  console.log(`######################################################`);
+}, 1000);
+
+let count = 0;
+
+let intervalId = setInterval(() => {
+  console.log("This is Abhishek Testing setInterval function");
+
+  count++;
+  if (count > 5) {
+    clearInterval(intervalId); // Use clearInterval to stop the interval
+  }
+}, 1000);
+
+
+//using setTimeout for clearinterval
+
+const intervalId2 = setInterval(function(){
+  console.log(`This function is being executed at the interval`)
+},1000)
+
+setTimeout(function(){
+  clearInterval(intervalId2) // Using setTimeout to stop the interval
+}, 5000)
+```
