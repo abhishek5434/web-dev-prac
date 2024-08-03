@@ -1,6 +1,4 @@
 <h2> START DATE: 15th July 2024</h2>
-<img width="350" alt="image" src="https://github.com/user-attachments/assets/4ad9561f-9c91-40ef-9494-2fed1994687a"> <img width="334" alt="image" src="https://github.com/user-attachments/assets/51d96b95-1ed6-4ec3-9648-c98963b4c791"> <br>
-<img width="286" alt="image" src="https://github.com/user-attachments/assets/11410b19-0fee-4658-85bf-ca54ebcaffe8"> <img width="276" alt="image" src="https://github.com/user-attachments/assets/ed6eecb6-c332-4c03-8749-8f6b4e1d5c2b">
 
 ### basics
 ```JS
@@ -1145,3 +1143,136 @@ const day = String(customDate.getDate()).padStart(2, '0');
 console.log(`Custom Format: ${year}-${month}-${day}`); // Outputs: 2024-07-29
 ```
 
+# `setInterval`, `setTimeout`, and `clearInterval`
+
+### `setTimeout`
+
+**Purpose:**  
+`setTimeout` is used to execute a function once after a specified number of milliseconds.
+
+**Syntax:**
+```javascript
+let timeoutId = setTimeout(function, delay, arg1, arg2, ...);
+```
+
+- **`function`**: The function to be executed.
+- **`delay`**: The time in milliseconds to wait before executing the function.
+- **`arg1, arg2, ...`**: Optional arguments to pass to the function when executed.
+
+**Use Cases:**
+
+- Delaying the execution of a piece of code.
+- Executing a function once after a delay.
+- Scheduling a function to run after a particular event.
+
+**Example:**
+```javascript
+function greet() {
+    console.log('Hello, world!');
+}
+
+// Call greet() after 2000 milliseconds (2 seconds)
+let timeoutId = setTimeout(greet, 2000);
+```
+
+**Canceling a Timeout:**
+
+You can cancel a timeout before it executes using `clearTimeout`.
+
+```javascript
+clearTimeout(timeoutId);
+```
+
+**Example:**
+```javascript
+let timeoutId = setTimeout(greet, 2000);
+
+// Cancel the timeout before it executes
+clearTimeout(timeoutId);
+```
+
+### `setInterval`
+
+**Purpose:**  
+`setInterval` is used to repeatedly execute a function at a specified interval (in milliseconds).
+
+**Syntax:**
+```javascript
+let intervalId = setInterval(function, delay, arg1, arg2, ...);
+```
+
+- **`function`**: The function to be executed.
+- **`delay`**: The time in milliseconds between executions of the function.
+- **`arg1, arg2, ...`**: Optional arguments to pass to the function each time it is executed.
+
+**Use Cases:**
+
+- Creating animations or updates that need to occur repeatedly.
+- Polling for data at regular intervals.
+- Implementing timers or clocks.
+
+**Example:**
+```javascript
+function logTime() {
+    console.log(new Date().toLocaleTimeString());
+}
+
+// Log the current time every second
+let intervalId = setInterval(logTime, 1000);
+```
+
+**Canceling an Interval:**
+
+You can stop an interval using `clearInterval`.
+
+```javascript
+clearInterval(intervalId);
+```
+
+**Example:**
+```javascript
+let count = 0;
+
+function incrementCounter() {
+    count++;
+    console.log(count);
+
+    if (count >= 5) {
+        clearInterval(intervalId);
+    }
+}
+
+// Increment the counter every second and stop after 5 increments
+let intervalId = setInterval(incrementCounter, 1000);
+```
+
+### `clearInterval`
+
+**Purpose:**  
+`clearInterval` stops a timer that was previously established by calling `setInterval`.
+
+**Syntax:**
+```javascript
+clearInterval(intervalId);
+```
+
+- **`intervalId`**: The identifier of the interval you want to cancel, as returned by `setInterval`.
+
+**Use Cases:**
+
+- Stopping repeated actions once a condition is met.
+- Preventing unnecessary executions of code after it is no longer needed.
+
+**Example:**
+```javascript
+let intervalId = setInterval(() => console.log('Repeating'), 1000);
+
+// Stop the interval after 5 seconds
+setTimeout(() => clearInterval(intervalId), 5000);
+```
+
+### Summary
+
+- **`setTimeout`** is for running a function once after a delay.
+- **`setInterval`** is for running a function repeatedly at set intervals.
+- **`clearTimeout`** and **`clearInterval`** are used to cancel scheduled actions.
