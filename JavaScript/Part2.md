@@ -324,3 +324,82 @@ The spread operator (`...`) allows an iterable (like an array or string) or an o
 - **Function Arguments:** Spread array elements into individual function arguments.
 - **Shallow Copies:** The spread operator creates shallow copies, meaning nested objects or arrays are not duplicated.
 
+# Rest Parameter
+
+**Overview:**  
+The Rest Parameter (`...`) allows you to represent an indefinite number of arguments as an array in a function. It provides a clean and efficient way to handle functions that can receive varying numbers of arguments.
+
+### Syntax
+
+```javascript
+function functionName(param1, param2, ...rest) {
+  // Function body
+}
+```
+
+- `...rest` is the rest parameter, which will collect all remaining arguments into an array named `rest`.
+
+### Key Features
+
+1. **Collecting Arguments:**
+   - The rest parameter gathers all the remaining arguments passed to a function into an array.
+
+   ```javascript
+   function logArguments(...args) {
+     console.log(args);
+   }
+
+   logArguments(1, 2, 3, 4); // Output: [1, 2, 3, 4]
+   ```
+
+2. **Flexible Argument Handling:**
+   - It allows you to handle a variable number of arguments without using the `arguments` object.
+
+   ```javascript
+   function sum(...numbers) {
+     return numbers.reduce((total, num) => total + num, 0);
+   }
+
+   console.log(sum(1, 2, 3)); // Output: 6
+   console.log(sum(10, 20)); // Output: 30
+   ```
+
+3. **Combining with Named Parameters:**
+   - You can combine rest parameters with named parameters, but the rest parameter must be the last in the function definition.
+
+   ```javascript
+   function concatenate(separator, ...strings) {
+     return strings.join(separator);
+   }
+
+   console.log(concatenate(", ", "a", "b", "c")); // Output: "a, b, c"
+   ```
+
+4. **Difference from the `arguments` Object:**
+   - The `arguments` object is not a true array but an array-like object, whereas the rest parameter is a real array.
+   - The rest parameter does not include named parameters, whereas the `arguments` object includes all passed arguments.
+
+   ```javascript
+   function showArguments(...args) {
+     console.log(args instanceof Array); // true
+     console.log(args);
+   }
+
+   showArguments("apple", "banana", "cherry"); // Output: ["apple", "banana", "cherry"]
+   ```
+
+5. **Using with Arrow Functions:**
+   - Arrow functions do not have their own `arguments` object, making rest parameters especially useful.
+
+   ```javascript
+   const multiply = (...nums) => nums.reduce((product, num) => product * num, 1);
+
+   console.log(multiply(2, 3, 4)); // Output: 24
+   ```
+
+### Summary
+
+- **Collects Excess Arguments:** Rest parameters gather any number of arguments into an array, allowing functions to handle an indefinite number of inputs.
+- **Flexible and Clean:** They provide a cleaner alternative to the `arguments` object and work well with other ES6 features.
+- **Must Be Last:** The rest parameter must be the last parameter in the function definition.
+
