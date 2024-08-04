@@ -801,3 +801,279 @@ Assigns a letter grade based on the `score`.
 
 - **Avoid Overuse**: For complex conditions, prefer `if-else` statements.
 
+# For Loop versions in JS
+
+### 1. Traditional `for` Loop
+
+The most basic form, used for simple iteration over a range.
+
+**Syntax:**
+
+```javascript
+for (initialization; condition; increment) {
+    // Code to be executed
+}
+```
+
+**Example:**
+
+```javascript
+for (let i = 0; i < 5; i++) {
+    console.log(i);
+}
+// Output: 0 1 2 3 4
+```
+
+**Use Case:** Ideal for situations where you need to iterate a specific number of times or need precise control over the iteration process.
+
+### 2. `for...in` Loop
+
+Used to iterate over the enumerable properties of an object.
+
+**Syntax:**
+
+```javascript
+for (let key in object) {
+    // Code to be executed
+}
+```
+
+**Example:**
+
+```javascript
+const object = { a: 1, b: 2, c: 3 };
+for (let key in object) {
+    if (object.hasOwnProperty(key)) {
+        console.log(key, object[key]);
+    }
+}
+// Output: a 1 b 2 c 3
+```
+```JS
+let person = {
+  name: "Abhishek",
+  age: 26,
+  city: "Bangalore",
+};
+
+for (let keys in person) {
+  console.log(keys, ": ", person[keys]);
+}
+
+console.log("###########################################");
+list = ["one", "two", "three", "four"];
+for (let numbers in list) {
+  console.log(numbers);
+}
+
+const object = { a: 1, b: 2, c: 3 };
+
+for (let [key, value] of Object.entries(object)) {
+  console.log(key, value);
+}
+
+for (let keys in object) {
+  console.log(`${keys}: ${object[keys]}`);
+}
+```
+
+**Use Case:** Best for iterating over object properties. Use `hasOwnProperty` to ensure you’re iterating over the object’s own properties.
+
+### 3. `for...of` Loop
+
+Used to iterate over iterable objects like arrays, strings, maps, sets, etc.
+
+**Syntax:**
+
+```javascript
+for (let element of iterable) {
+    // Code to be executed
+}
+```
+
+**Example:**
+
+```javascript
+const array = ['apple', 'banana', 'cherry'];
+for (let fruit of array) {
+    console.log(fruit);
+}
+// Output: apple banana cherry
+```
+
+**Use Case:** Ideal for iterating over arrays or any iterable object without needing to deal with indices.
+
+### 4. `forEach` Method
+
+A method available on arrays that executes a provided function once for each array element.
+
+**Syntax:**
+
+```javascript
+array.forEach((element, index, array) => {
+    // Code to be executed
+});
+```
+
+**Example:**
+
+```javascript
+const array = ['apple', 'banana', 'cherry'];
+array.forEach((fruit, index) => {
+    console.log(index, fruit);
+});
+// Output: 0 apple 1 banana 2 cherry
+```
+
+**Use Case:** Good for performing an action on each element of an array without modifying the array itself. Note that `forEach` cannot be broken out of like a `for` loop.
+
+### 5. `for await...of` Loop
+
+Used for iterating over asynchronous iterable objects, such as streams or async generators.
+
+**Syntax:**
+
+```javascript
+for await (let item of asyncIterable) {
+    // Code to be executed
+}
+```
+
+**Example:**
+
+```javascript
+async function* asyncGenerator() {
+    yield Promise.resolve(1);
+    yield Promise.resolve(2);
+    yield Promise.resolve(3);
+}
+
+(async () => {
+    for await (let num of asyncGenerator()) {
+        console.log(num);
+    }
+})();
+// Output: 1 2 3
+```
+
+**Use Case:** Useful for handling asynchronous data streams or iterating over results from asynchronous operations.
+
+### Considerations
+
+- **Choosing the Right Loop:** Use the loop type that best fits the data structure and operations you're working with. `for...of` is more modern and generally preferred for array-like iterations, while `for...in` is useful for objects.
+- **Performance:** While performance differences are usually negligible, traditional `for` loops can be more performant in cases where tight control is needed.
+- **Readability:** Always consider readability and maintainability. Simpler loops like `for...of` and `forEach` often result in cleaner code.
+
+## When to use what for loop:
+
+Guide for choosing right for loop
+
+### 1. **Traditional `for` Loop**
+
+**Use When:**
+
+- You need precise control over the iteration process, such as specific start, stop, and step values.
+- You're working with indexes directly, such as modifying elements at specific positions in an array.
+- You need to break out of the loop early or skip certain iterations using `break` and `continue`.
+
+**Example:**
+
+```javascript
+for (let i = 0; i < array.length; i++) {
+    if (array[i] === target) {
+        console.log('Found target');
+        break;
+    }
+}
+```
+
+### 2. **`for...in` Loop**
+
+**Use When:**
+
+- You need to iterate over an object's enumerable properties.
+- You're dealing with non-array objects where you want to access keys and values.
+
+**Avoid When:**
+
+- Iterating over arrays, as `for...in` iterates over all enumerable properties, which can lead to unexpected results with arrays.
+
+**Example:**
+
+```javascript
+const object = { name: 'Alice', age: 25 };
+for (let key in object) {
+    if (object.hasOwnProperty(key)) {
+        console.log(key, object[key]);
+    }
+}
+```
+
+### 3. **`for...of` Loop**
+
+**Use When:**
+
+- Iterating over arrays, strings, maps, sets, or any iterable object.
+- You want a simple and clean syntax for accessing elements directly without dealing with indices.
+- You're working with collections that don't need modification by index.
+
+**Example:**
+
+```javascript
+const fruits = ['apple', 'banana', 'cherry'];
+for (let fruit of fruits) {
+    console.log(fruit);
+}
+```
+
+### 4. **`forEach` Method**
+
+**Use When:**
+
+- You need to perform an operation on each element of an array.
+- You're focused on readability and simplicity, especially when dealing with arrays.
+
+**Limitations:**
+
+- Cannot use `break`, `continue`, or `return` to exit early.
+- Primarily used for side effects rather than transforming data.
+
+**Example:**
+
+```javascript
+const numbers = [1, 2, 3, 4];
+numbers.forEach(number => {
+    console.log(number * 2);
+});
+```
+
+### 5. **`for await...of` Loop**
+
+**Use When:**
+
+- Iterating over asynchronous data, such as streams or results from async functions.
+- You need to handle promises in a sequential manner.
+
+**Example:**
+
+```javascript
+async function* asyncGenerator() {
+    yield Promise.resolve(1);
+    yield Promise.resolve(2);
+    yield Promise.resolve(3);
+}
+
+(async () => {
+    for await (let num of asyncGenerator()) {
+        console.log(num);
+    }
+})();
+```
+
+### Summary
+
+- **Use `for` loop** when you need complete control over the loop's iteration variables.
+- **Use `for...in`** for iterating over object properties, but avoid it for arrays.
+- **Use `for...of`** for iterating over arrays and other iterables with clean, readable syntax.
+- **Use `forEach`** for array operations where exiting the loop early isn't needed, focusing on readability.
+- **Use `for await...of`** for handling asynchronous iterables in a clear and sequential way.
