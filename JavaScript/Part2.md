@@ -448,7 +448,8 @@ sum(20, 50, 75, 25, 30);
 ```
 Here are concise notes on array destructuring in JavaScript, a feature that allows you to unpack values from arrays into distinct variables.
 
-# Array Destructuring
+# Destructuring
+## Array Destructuring
 
 **Overview:**  
 Array destructuring in JavaScript allows you to extract values from arrays and assign them to variables in a single, concise statement. This syntax makes it easy to work with data stored in arrays.
@@ -544,3 +545,197 @@ const [var1, var2, ...rest] = array;
 - **Rest Parameter:** Use the rest parameter to gather the remaining elements into an array.
 - **Versatile:** Useful for swapping variables, handling function returns, and managing multiple variables efficiently.
 
+## Object Destructuring
+
+**Overview:**  
+Object destructuring in JavaScript lets you unpack properties from objects and assign them to variables in a concise and readable manner. This syntax is useful for extracting data from complex objects.
+
+### Syntax
+
+```javascript
+const { property1, property2 } = object;
+```
+
+- **`property1`, `property2`**: The names of the properties you want to extract.
+- **`object`**: The object from which properties are being extracted.
+
+### Key Features
+
+1. **Basic Destructuring:**
+   - Extract multiple properties from an object.
+
+   ```javascript
+   const person = { name: "Abhishek", age: 25, city: "New York" };
+   const { name, age, city } = person;
+
+   console.log(name); // Output: "Abhishek"
+   console.log(age);  // Output: 25
+   console.log(city); // Output: "New York"
+   ```
+
+2. **Default Values:**
+   - Assign default values to variables if the property is `undefined`.
+
+   ```javascript
+   const person = { name: "Abhishek" };
+   const { name, age = 30 } = person;
+
+   console.log(name); // Output: "Abhishek"
+   console.log(age);  // Output: 30
+   ```
+
+3. **Renaming Variables:**
+   - Use a colon (`:`) to rename variables while destructuring.
+
+   ```javascript
+   const person = { name: "Abhishek", age: 25 };
+   const { name: fullName, age: years } = person;
+
+   console.log(fullName); // Output: "Abhishek"
+   console.log(years);    // Output: 25
+   ```
+
+4. **Nested Destructuring:**
+   - Extract properties from nested objects.
+
+   ```javascript
+   const user = {
+     name: "Abhishek",
+     address: {
+       city: "New York",
+       zip: 10001
+     }
+   };
+   const {
+     name,
+     address: { city, zip }
+   } = user;
+
+   console.log(name); // Output: "Abhishek"
+   console.log(city); // Output: "New York"
+   console.log(zip);  // Output: 10001
+   ```
+
+5. **Rest Properties:**
+   - Collect the remaining properties into a new object.
+
+   ```javascript
+   const person = { name: "Abhishek", age: 25, city: "New York" };
+   const { name, ...rest } = person;
+
+   console.log(name); // Output: "Abhishek"
+   console.log(rest); // Output: { age: 25, city: "New York" }
+   ```
+
+6. **Function Parameters:**
+   - Use destructuring to extract properties from objects passed as function parameters.
+
+   ```javascript
+   function displayPerson({ name, age }) {
+     console.log(`Name: ${name}, Age: ${age}`);
+   }
+
+   const person = { name: "Abhishek", age: 25 };
+   displayPerson(person); // Output: "Name: Abhishek, Age: 25"
+   ```
+
+### Summary
+
+- **Concise Syntax:** Object destructuring provides a clean and concise way to extract object properties.
+- **Default Values:** Supports default values for undefined properties.
+- **Renaming and Nesting:** Allows renaming of variables and extraction from nested structures.
+- **Flexible:** Works well with function parameters, enhancing code readability and maintainability.
+
+## Nested Destructuring
+```JS
+const songs = [
+  { name: "lucky you", singer: "Joyner", duration: 4.34 },
+  { name: "Just Like you", singer: "NF", duration: 3.23 },
+  { name: "Humble Singer", singer: "Kendrick Lamar", duration: 2.33 },
+  { name: "Old Town Road", singer: "Lil Nas X", duration: 1.43 },
+];
+
+const [, { singer: singer2 }, { singer: singer3 }, { singer: singer4 }] = songs;
+// console.log("Singer1: ", singer1);
+console.log("Singer2: ", singer2);
+console.log("Singer3: ", singer3);
+console.log("Singer4: ", singer4);
+
+console.log(typeof songs);
+console.log(Array.isArray(songs));
+```
+## Mix destructuring
+Robust Example of destructuring
+```JS
+const data = {
+  user: {
+    id: 123,
+    name: "John Doe",
+    age: 30,
+    email: "john.doe@example.com",
+    address: {
+      city: "New York",
+      country: "USA",
+    },
+    hobbies: ["Reading", "Painting", "Cooking"],
+    scores: {
+      math: 95,
+      science: 88,
+      history: 75,
+    },
+  },
+  products: [
+    { id: 1, name: "Laptop", price: 1000 },
+    { id: 2, name: "Phone", price: 800 },
+    { id: 3, name: "Tablet", price: 500 },
+  ],
+  settings: {
+    darkMode: true,
+    notifications: {
+      email: true,
+      sms: false,
+      push: true,
+    },
+    language: "English",
+  },
+};
+
+// Extracting data using object destructuring
+const {
+  user: {
+    name,
+    age,
+    address: { city, country },
+    hobbies,
+    scores: { math, science, history },
+    email,
+  },
+  products: [product1, product2, product3],
+  settings: {
+    darkMode,
+    notifications: {
+      email: emailNotifications,
+      sms: smsNotifications,
+      push: pushNotifications,
+    },
+    language,
+  },
+} = data;
+
+// Logging the extracted data using template literals
+console.log(`Name: ${name}`);
+console.log(`Age: ${age}`);
+console.log(`Address: ${city}, ${country}`);
+console.log(`Hobbies: ${hobbies.join(", ")}`);
+console.log(`Math Score: ${math}`);
+console.log(`Science Score: ${science}`);
+console.log(`History Score: ${history}`);
+console.log(`Product 1: ${product1.name} - $${product1.price}`);
+console.log(`Product 2: ${product2.name} - $${product2.price}`);
+console.log(`Product 3: ${product3.name} - $${product3.price}`);
+console.log(`Dark Mode: ${darkMode}`);
+console.log(`Email Notifications: ${emailNotifications}`);
+console.log(`SMS Notifications: ${smsNotifications}`);
+console.log(`Push Notifications: ${pushNotifications}`);
+console.log(`Language: ${language}`);
+```
