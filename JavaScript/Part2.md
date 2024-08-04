@@ -446,3 +446,101 @@ function sum(...nums) {
 
 sum(20, 50, 75, 25, 30);
 ```
+Here are concise notes on array destructuring in JavaScript, a feature that allows you to unpack values from arrays into distinct variables.
+
+# Array Destructuring
+
+**Overview:**  
+Array destructuring in JavaScript allows you to extract values from arrays and assign them to variables in a single, concise statement. This syntax makes it easy to work with data stored in arrays.
+
+### Syntax
+
+```javascript
+const [var1, var2, ...rest] = array;
+```
+
+- **`var1`, `var2`**: Variables to which the array elements are assigned.
+- **`rest`**: Collects the remaining elements into an array.
+
+### Key Features
+
+1. **Basic Destructuring:**
+   - Assign values from an array to variables based on their position.
+
+   ```javascript
+   const fruits = ["apple", "banana", "cherry"];
+   const [first, second, third] = fruits;
+
+   console.log(first); // Output: "apple"
+   console.log(second); // Output: "banana"
+   console.log(third); // Output: "cherry"
+   ```
+
+2. **Skipping Elements:**
+   - Skip elements by leaving empty slots.
+
+   ```javascript
+   const numbers = [1, 2, 3, 4, 5];
+   const [first, , third] = numbers;
+
+   console.log(first); // Output: 1
+   console.log(third); // Output: 3
+   ```
+
+3. **Default Values:**
+   - Assign default values to variables if the array does not have enough elements.
+
+   ```javascript
+   const colors = ["red"];
+   const [primary, secondary = "blue"] = colors;
+
+   console.log(primary); // Output: "red"
+   console.log(secondary); // Output: "blue"
+   ```
+
+4. **Rest Parameter:**
+   - Collect remaining elements into a new array.
+
+   ```javascript
+   const scores = [10, 20, 30, 40];
+   const [first, second, ...rest] = scores;
+
+   console.log(first); // Output: 10
+   console.log(second); // Output: 20
+   console.log(rest); // Output: [30, 40]
+   ```
+
+5. **Swapping Variables:**
+   - Use destructuring to swap values between variables.
+
+   ```javascript
+   let a = 1;
+   let b = 2;
+
+   [a, b] = [b, a];
+
+   console.log(a); // Output: 2
+   console.log(b); // Output: 1
+   ```
+
+6. **Destructuring with Functions:**
+   - Easily pass and return arrays in functions.
+
+   ```javascript
+   function getCoordinates() {
+     return [10, 20];
+   }
+
+   const [x, y] = getCoordinates();
+
+   console.log(x); // Output: 10
+   console.log(y); // Output: 20
+   ```
+
+### Summary
+
+- **Concise and Readable:** Array destructuring provides a cleaner and more readable way to extract values from arrays.
+- **Default Values:** Supports default values for handling undefined elements.
+- **Rest Parameter:** Use the rest parameter to gather the remaining elements into an array.
+- **Versatile:** Useful for swapping variables, handling function returns, and managing multiple variables efficiently.
+
