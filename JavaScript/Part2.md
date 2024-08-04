@@ -403,3 +403,46 @@ function functionName(param1, param2, ...rest) {
 - **Flexible and Clean:** They provide a cleaner alternative to the `arguments` object and work well with other ES6 features.
 - **Must Be Last:** The rest parameter must be the last parameter in the function definition.
 
+### Examples
+```JS
+
+function sum(...numbers) {
+  let sum = 0;
+  for (let number of numbers) {
+    sum += number;
+  }
+  return sum;
+}
+
+console.log(sum(1, 2, 3, 4, 5)); // Output: 15
+
+
+function sumArray(...numbers) {
+  sumVal = numbers.reduce(
+    (accumulator, currentValue) => accumulator + currentValue,
+    0
+  );
+  console.log(sumVal);
+}
+
+// Example usage
+
+sumArray(1, 2, 3, 4, 5);
+
+console.log(totalSum); // Output: 15
+
+function restTest(...params) {
+  for (let index = 0; index < params.length; index++) {
+    console.log(params[index]);
+  }
+}
+
+restTest("Take", "unlimited", "value", "in", "the", "params");
+
+function sum(...nums) {
+  let summation = nums.reduce((a, b) => a + b, 0);
+  console.log(summation);
+}
+
+sum(20, 50, 75, 25, 30);
+```
