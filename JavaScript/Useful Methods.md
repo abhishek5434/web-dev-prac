@@ -106,3 +106,108 @@ In this example, `find` is used to locate the first number in the array that is 
 - **`filter`**: Returns a new array containing only the elements that pass a specified test.
 - **`find`**: Returns the first element in an array that satisfies a provided testing function.
 
+# `Array.prototype.reduce()`
+
+The `reduce` method applies a function against an accumulator and each element in the array (from left to right) to reduce it to a single value.
+
+**Syntax:**
+
+```javascript
+array.reduce((accumulator, currentValue, index, array) => {
+    // Return updated accumulator
+}, initialValue);
+```
+
+**Example:**
+
+```javascript
+let numbers = [1, 2, 3, 4];
+let sum = numbers.reduce((acc, num) => acc + num, 0);
+console.log(sum); // Output: 10
+```
+
+# `Array.prototype.some()`
+
+The `some` method tests whether at least one element in the array passes the test implemented by the provided function. It returns a Boolean value.
+
+**Example:**
+
+```javascript
+let numbers = [1, 2, 3, 4];
+let hasEven = numbers.some(number => number % 2 === 0);
+console.log(hasEven); // Output: true
+```
+
+# `Array.prototype.every()`
+
+The `every` method tests whether all elements in the array pass the test implemented by the provided function. It returns a Boolean value.
+
+**Example:**
+
+```javascript
+let numbers = [2, 4, 6];
+let allEven = numbers.every(number => number % 2 === 0);
+console.log(allEven); // Output: true
+```
+
+# `Array.prototype.concat()`
+
+The `concat` method is used to merge two or more arrays. This method does not change the existing arrays but returns a new array.
+
+**Example:**
+
+```javascript
+let array1 = [1, 2];
+let array2 = [3, 4];
+let mergedArray = array1.concat(array2);
+console.log(mergedArray); // Output: [1, 2, 3, 4]
+```
+
+# `Array.prototype.slice()`
+
+The `slice` method returns a shallow copy of a portion of an array into a new array object selected from `start` to `end` (end not included).
+
+**Example:**
+
+```javascript
+let numbers = [1, 2, 3, 4, 5];
+let sliced = numbers.slice(1, 3);
+console.log(sliced); // Output: [2, 3]
+```
+
+# `Array.prototype.splice()`
+
+The `splice` method changes the contents of an array by removing or replacing existing elements and/or adding new elements in place.
+
+**Example:**
+
+```javascript
+let numbers = [1, 2, 3, 4, 5];
+numbers.splice(2, 1, 9); // Removes 1 element at index 2, adds 9
+console.log(numbers); // Output: [1, 2, 9, 4, 5]
+```
+
+# `Array.prototype.sort()`
+
+The `sort` method sorts the elements of an array in place and returns the sorted array.
+
+**Example:**
+
+```javascript
+let numbers = [4, 2, 5, 1, 3];
+numbers.sort((a, b) => a - b); // Ascending order
+console.log(numbers); // Output: [1, 2, 3, 4, 5]
+```
+
+# `Array.prototype.join()`
+
+The `join` method joins all elements of an array into a string and returns this string.
+
+**Example:**
+
+```javascript
+let words = ['Hello', 'world'];
+let sentence = words.join(' ');
+console.log(sentence); // Output: "Hello world"
+```
+
