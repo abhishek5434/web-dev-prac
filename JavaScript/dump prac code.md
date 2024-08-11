@@ -123,3 +123,40 @@ let products = [
 let proBook = products.find((product) => product.category === "Books");
 console.log(proBook);
 ```
+# Reduce Method
+```JS
+//REDUCE METHOD
+
+let str = ["one", "two", "three", "four", "five", "six"];
+let addStr = str.reduce((allstr, strval) => allstr + " " + strval, "");
+console.log(addStr);
+
+// console.log(addNum);
+let num = [1, 2, 3, 4, 5, 6];
+let addNum = num.reduce((all, val) => {
+  console.log(`Total: ${all}, Current Value: ${val}`);
+  return all + val; // Return the updated accumulator
+}, 0);
+
+console.log(`Final Sum: ${addNum}`);
+
+// Example 3
+const words = [
+  "apple",
+  "banana",
+  "orange",
+  "banana",
+  "apple",
+  "orange",
+  "apple",
+  "grape",
+];
+
+const wordFrequency = words.reduce((frequencyMap, word) => {
+  frequencyMap[word] = (frequencyMap[word] || 0) + 1;
+  return frequencyMap;
+}, {});
+
+console.log(wordFrequency);
+console.log("Jai shree Ram");
+```
