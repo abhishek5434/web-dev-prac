@@ -160,3 +160,53 @@ const wordFrequency = words.reduce((frequencyMap, word) => {
 console.log(wordFrequency);
 console.log("Jai shree Ram");
 ```
+# Map
+```JS
+let map = new Map();
+
+map.set("name", "Abhishek");
+map.set("age", 19);
+map.set("gender", "Male");
+console.log(map);
+for (let [key, value] of map) {
+  console.log(key, ":", value);
+}
+
+// Map
+
+let newMap = new Map([
+  ["a", 1],
+  ["b", 2],
+  ["c", 3],
+]);
+// newMap.set()
+
+console.log(newMap);
+console.log(newMap.get("a"));
+console.log(newMap.size);
+newMap.delete("b");
+console.log(newMap.size);
+```
+# SET
+```JS
+const initialValues = [1, 2, 3, 4, 1, 4, 5, 6];
+const mySet = new Set(initialValues);
+mySet.add("apple");
+mySet.add("banana");
+mySet.add("apple");
+mySet.add("mango");
+mySet.add("apple");
+mySet.add("apple");
+console.log(mySet);
+
+console.log(mySet.has("apple"));
+console.log(mySet.has("Abhishek"));
+mySet.delete("apple");
+console.log(mySet);
+// mySet.clear();
+console.log(mySet);
+
+for (let item of mySet) {
+  console.log(item);
+}
+```
