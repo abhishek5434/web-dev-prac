@@ -815,3 +815,168 @@ Events are actions or occurrences that happen in the browser, such as clicks, ke
 - **Event Delegation**: Efficient way to manage events for multiple child elements.
 - **`preventDefault()`**: Prevents the default action associated with an event.
 - **`stopPropagation()`**: Stops the event from bubbling up the DOM tree.
+
+# Mouse Events in JavaScript
+
+Mouse events are a core part of making web pages interactive. These events are triggered by actions involving the mouse, such as clicks, movements, and scrolls. JavaScript provides several built-in mouse events that you can use to respond to user actions.
+
+#### Common Mouse Events
+
+1. **`click`**
+   - **Description**: Triggered when the user clicks on an element (typically with the left mouse button).
+   - **Use Case**: Used to execute a function when an element is clicked.
+   - **Example**:
+     ```javascript
+     const button = document.getElementById('myButton');
+     button.addEventListener('click', function() {
+       alert('Button clicked!');
+     });
+     ```
+
+2. **`dblclick`**
+   - **Description**: Triggered when the user double-clicks on an element.
+   - **Use Case**: Used to trigger actions that should only happen after a double click.
+   - **Example**:
+     ```javascript
+     const box = document.getElementById('myBox');
+     box.addEventListener('dblclick', function() {
+       alert('Box double-clicked!');
+     });
+     ```
+
+3. **`mousedown`**
+   - **Description**: Triggered when the user presses down on a mouse button.
+   - **Use Case**: Useful for detecting the start of a click or drag operation.
+   - **Example**:
+     ```javascript
+     const div = document.getElementById('myDiv');
+     div.addEventListener('mousedown', function() {
+       console.log('Mouse button pressed down on div');
+     });
+     ```
+
+4. **`mouseup`**
+   - **Description**: Triggered when the user releases a mouse button.
+   - **Use Case**: Often used together with `mousedown` to detect a complete click or drag operation.
+   - **Example**:
+     ```javascript
+     const div = document.getElementById('myDiv');
+     div.addEventListener('mouseup', function() {
+       console.log('Mouse button released on div');
+     });
+     ```
+
+5. **`mousemove`**
+   - **Description**: Triggered when the mouse pointer moves over an element.
+   - **Use Case**: Useful for tracking the mouse's position, creating drag-and-drop interfaces, or custom cursor effects.
+   - **Example**:
+     ```javascript
+     const div = document.getElementById('myDiv');
+     div.addEventListener('mousemove', function(event) {
+       console.log(`Mouse moved: X=${event.clientX}, Y=${event.clientY}`);
+     });
+     ```
+
+6. **`mouseenter`**
+   - **Description**: Triggered when the mouse pointer enters the boundaries of an element.
+   - **Use Case**: Used for hover effects or when you want to detect when the mouse first enters an element.
+   - **Example**:
+     ```javascript
+     const div = document.getElementById('myDiv');
+     div.addEventListener('mouseenter', function() {
+       div.style.backgroundColor = 'yellow';
+     });
+     ```
+
+7. **`mouseleave`**
+   - **Description**: Triggered when the mouse pointer leaves the boundaries of an element.
+   - **Use Case**: Used to reset or remove hover effects.
+   - **Example**:
+     ```javascript
+     const div = document.getElementById('myDiv');
+     div.addEventListener('mouseleave', function() {
+       div.style.backgroundColor = '';
+     });
+     ```
+
+8. **`mouseover`**
+   - **Description**: Similar to `mouseenter`, but `mouseover` also triggers when the mouse enters child elements.
+   - **Use Case**: Often used for hover effects that need to include child elements.
+   - **Example**:
+     ```javascript
+     const div = document.getElementById('myDiv');
+     div.addEventListener('mouseover', function() {
+       div.style.borderColor = 'red';
+     });
+     ```
+
+9. **`mouseout`**
+   - **Description**: Similar to `mouseleave`, but `mouseout` triggers when the mouse leaves the element or any of its children.
+   - **Use Case**: Used to handle hover effects that involve both an element and its children.
+   - **Example**:
+     ```javascript
+     const div = document.getElementById('myDiv');
+     div.addEventListener('mouseout', function() {
+       div.style.borderColor = '';
+     });
+     ```
+
+10. **`contextmenu`**
+    - **Description**: Triggered when the user right-clicks on an element, which typically opens the context menu.
+    - **Use Case**: Can be used to customize the context menu or prevent it from appearing.
+    - **Example**:
+      ```javascript
+      const div = document.getElementById('myDiv');
+      div.addEventListener('contextmenu', function(event) {
+        event.preventDefault(); // Prevent the default context menu from appearing
+        alert('Custom context menu!');
+      });
+      ```
+
+#### The Event Object
+
+- **Description**: When a mouse event is triggered, an event object is passed to the event handler function. This object contains useful information about the event, such as:
+  - `event.type`: The type of event (e.g., 'click').
+  - `event.target`: The element that triggered the event.
+  - `event.clientX`, `event.clientY`: The mouse pointer's coordinates relative to the viewport.
+  - `event.button`: Indicates which mouse button was pressed (0 = left, 1 = middle, 2 = right).
+
+- **Example**:
+  ```javascript
+  const div = document.getElementById('myDiv');
+  div.addEventListener('click', function(event) {
+    console.log('Clicked element:', event.target);
+    console.log('Mouse position: X=' + event.clientX + ', Y=' + event.clientY);
+  });
+  ```
+
+#### Event Propagation and Handling
+
+- **Event Propagation**: Mouse events propagate through the DOM in three phases: capturing phase, target phase, and bubbling phase. By default, events bubble up from the target element to the root.
+
+- **`stopPropagation()`**: Stops the event from propagating further up or down the DOM tree.
+  - **Example**:
+    ```javascript
+    const button = document.getElementById('myButton');
+    button.addEventListener('click', function(event) {
+      event.stopPropagation(); // Prevents the event from reaching parent elements
+      alert('Button clicked without bubbling');
+    });
+    ```
+
+- **`preventDefault()`**: Prevents the default action associated with the event (e.g., preventing a link from being followed).
+  - **Example**:
+    ```javascript
+    const link = document.getElementById('myLink');
+    link.addEventListener('click', function(event) {
+      event.preventDefault(); // Prevent the link from navigating
+      alert('Link click prevented!');
+    });
+    ```
+
+### Summary
+
+- **Mouse Events**: Include events like `click`, `dblclick`, `mousedown`, `mouseup`, `mousemove`, `mouseenter`, `mouseleave`, `mouseover`, `mouseout`, and `contextmenu`.
+- **Event Object**: Provides details about the event, including the type, target, and mouse position.
+- **Event Handling**: You can control event propagation and default behavior using `stopPropagation()` and `preventDefault()`.
+- **Use Cases**: Mouse events are used for interactivity, such as handling clicks, implementing drag-and-drop, or customizing context menus.
